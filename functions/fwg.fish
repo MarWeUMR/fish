@@ -15,7 +15,7 @@ function fwg
     end
 
     # this results in a result like "lua/init.lua +12", but nvim interprets it as two filenames
-    set SEARCH_RESULT (sk --ansi -i -c 'rg --line-number --pretty --ignore-case "{}" ~/wiki' --delimiter=':' --preview 'glow {1} --style dark' --preview-window position:$DIRECTION +{2}-/2 | awk -F':' '{print $1" +"$2}')
+    set SEARCH_RESULT (sk --ansi -i -c 'rg --line-number --ignore-case "{}" ~/wiki' --delimiter=':' --preview 'glow {1} --style dark' --preview-window position:$DIRECTION +{2}-/2 | awk -F':' '{print $1" +"$2}')
     # this results in two arguments:
     #   - [1]:= filepath
     #   - [2]:= line number
