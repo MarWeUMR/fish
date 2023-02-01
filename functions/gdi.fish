@@ -26,7 +26,7 @@ function gdi
     set GIT_DIFF_ARG_ONE (string split " " $COMMIT_ONE_SPLIT[1])
     set GIT_DIFF_ARG_TWO (string split " " $COMMIT_TWO_SPLIT[1])
 
-    if test (string length $GIT_DIFF_ARG_ONE[-1]) -eq 8; and test (string length $GIT_DIFF_ARG_TWO[-1]) -eq 8
+    if test (string length $GIT_DIFF_ARG_ONE[-1]) -gt 6; and test (string length $GIT_DIFF_ARG_TWO[-1]) -gt 6
         git diff $GIT_DIFF_ARG_ONE[-1] $GIT_DIFF_ARG_TWO[-1]
     else
         echo Something is wrong with the commit hashes
