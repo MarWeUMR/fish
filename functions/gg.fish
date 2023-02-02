@@ -13,7 +13,9 @@ function gg
         # "$(echo ...)" is neccessary for multiline strings (note the quotes!)
         set GIT_TWO_DIFF (printf "%s  %s  %s" "diff two commits, select interactively (gdi)" "$(echo '# interactive git diff selector for commits\nspawns two promts to select the commits.\nnote:The diff is shown such that the first selected commit is the newer state.')" "gdi")
         set GIT_STAGE_DIFF (printf "%s  %s  %s" "show the diff for the currently staged files (gdsi)" "$(echo '# staged files diff view\nShows all the already staged changes before a commit.')" "gdsi")
-        set CMDS $GIT_TWO_DIFF $GIT_STAGE_DIFF
+        set GIT_STAGE_DIFF_ALL (printf "%s  %s  %s" "show the diff for the staging area (gdsi_all)" "$(echo '# staging area diff view\nShows all the already staged changes before a commit.')" "gdsi_all")
+        set GIT_LIST_COMMITS (printf "%s  %s  %s" "show all commits (gli)" "$(echo '# commit view\nShows all commits.')" "gli")
+        set CMDS $GIT_TWO_DIFF $GIT_STAGE_DIFF $GIT_STAGE_DIFF_ALL $GIT_LIST_COMMITS
 
         for cmd in $CMDS
             echo $cmd
