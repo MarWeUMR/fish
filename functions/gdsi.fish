@@ -1,8 +1,8 @@
 # this function lists the staged files with their diffs.
 function gdsi
 
-    set DIRECTION right
-    set PREVIEW_CMD "git diff --staged --color=always "{}" | delta --diff-so-fancy --line-numbers --side-by-side --width=190"
+    set DIRECTION up
+    set PREVIEW_CMD "git diff --staged --color=always "{}" | delta --diff-so-fancy --line-numbers --side-by-side --width=$(tput cols)"
 
     # get the width of the terminal
     if test (tput cols) -lt 110
@@ -18,9 +18,9 @@ function gdsi
     else
         # get the diff of the selected file with delta and side-by-side view,
         # if the display is wide enough. otherwise use inline variant.
-        if test (tput cols) -lt 110 # horizontal view
+        if test (tput cols) -lt 110 # vertical view
             git diff --staged --color=always --color-moved $STAGED_FILES | delta --diff-so-fancy
-        else # vertical view
+        else # horizontal view
             git diff --staged --color=always --color-moved $STAGED_FILES | delta --side-by-side --diff-so-fancy
         end
     end
