@@ -5,7 +5,7 @@
 # select and/or refine search with skim
 # preview results with bat
 # open selected result at line x in nvim
-function fwg
+function fwp
 
     # first, decide if the preview window should be at the top or on the side
     set DIRECTION right
@@ -15,7 +15,7 @@ function fwg
     end
 
     # this results in a result like "lua/init.lua +12", but nvim interprets it as two filenames
-    set SEARCH_RESULT (sk --ansi -i -c 'rg --line-number --ignore-case "{}" ~/wiki' --delimiter=':' --preview 'glow {1} --style dark' --preview-window position:$DIRECTION +{2}-/2 | awk -F':' '{print $1" +"$2}')
+    set SEARCH_RESULT (sk --ansi -i -c 'rg --line-number --ignore-case "{}" ~/wiki' --delimiter=':' --preview 'python -m rich.markdown -c {1}' --preview-window position:$DIRECTION +{2}-/2 | awk -F':' '{print $1" +"$2}')
     # this results in two arguments:
     #   - [1]:= filepath
     #   - [2]:= line number
@@ -23,6 +23,6 @@ function fwg
     # now nvim can use both arguments as intended
 
     if set -q SPLIT_RESULT[1] # ... but only if filename is not empty
-        glow $SPLIT_RESULT[1]
+        python -m rich.markdown $SPLIT_RESULT[1]
     end
 end
