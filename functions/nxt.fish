@@ -1,13 +1,16 @@
+# this method lists all available cargo tests and allows to fuzzy find the test you want to run
+# TODO: make multiple test selections possible
 function nxt
 
+    # get a list of all tests and format it such that fzf can be used.
+    set LIST_OF_TESTS (cargo nextest list --all-features)
+    # xargs -n 1 is used to make a fzf compatible list of the items from above
+    set SELECTED_TEST (echo $LIST_OF_TESTS | xargs -n 1 | fzf --ansi -i)
 
 
-    # this results in a result like "lua/init.lua +12", but nvim interprets it as two filenames
-    set SELECTED_TEST (cargo nextest list --all-features | fzf --ansi -i | awk '{$1=$1};1')
-
-    echo $SELECTED_TEST
-    # now nvim can use both arguments as intended ...
-    if set -q SELECTED_TEST
+    if test -z "$SELECTED_TEST"
+        return
+    else
         cargo nextest run --all-features $SELECTED_TEST --no-capture
     end
 
