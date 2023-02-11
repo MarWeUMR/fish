@@ -17,7 +17,8 @@ function gg
         set GIT_LIST_COMMITS (printf "%s  %s  %s" "show all commits (gli)" "$(echo '# commit view\nShows all commits.')" "gli")
         set GIT_COMPARE_MAIN (printf "%s  %s  %s" "show the diff of current HEAD to upstream/main" "$(echo '# diff view\nShows the current changes in contrast to the lastest state of the main branch.')" "git diff upstream/main..HEAD | delta --side-by-side --diff-so-fancy")
         set GIT_COMPARE_MAIN_INTERACTIVE (printf "%s  %s  %s" "show the diff of current HEAD to upstream/main (per file)" "$(echo '# diff view\nShows the current changes in contrast to the lastest state of the main branch. \nSingle file version.')" "gdmi")
-        set CMDS $GIT_TWO_DIFF $GIT_STAGE_DIFF $GIT_STAGE_DIFF_ALL $GIT_LIST_COMMITS $GIT_COMPARE_MAIN $GIT_COMPARE_MAIN_INTERACTIVE
+        set CARGO_NEXTEST (printf "%s  %s  %s" "show a list of cargo tests (nxt)" "$(echo '# Cargo Tests\nShows the available cargo tests.')" "nxt")
+        set CMDS $GIT_TWO_DIFF $GIT_STAGE_DIFF $GIT_STAGE_DIFF_ALL $GIT_LIST_COMMITS $GIT_COMPARE_MAIN $GIT_COMPARE_MAIN_INTERACTIVE $CARGO_NEXTEST
 
         for cmd in $CMDS
             echo $cmd
