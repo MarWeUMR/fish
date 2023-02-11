@@ -15,7 +15,9 @@ function gg
         set GIT_STAGE_DIFF (printf "%s  %s  %s" "show the diff for the currently staged files (gdsi)" "$(echo '# staged files diff view\nShows all the already staged changes before a commit.')" "gdsi")
         set GIT_STAGE_DIFF_ALL (printf "%s  %s  %s" "show the diff for the staging area (gdsi_all)" "$(echo '# staging area diff view\nShows all the already staged changes before a commit.')" "gdsi_all")
         set GIT_LIST_COMMITS (printf "%s  %s  %s" "show all commits (gli)" "$(echo '# commit view\nShows all commits.')" "gli")
-        set CMDS $GIT_TWO_DIFF $GIT_STAGE_DIFF $GIT_STAGE_DIFF_ALL $GIT_LIST_COMMITS
+        set GIT_COMPARE_MAIN (printf "%s  %s  %s" "show the diff of current HEAD to upstream/main" "$(echo '# diff view\nShows the current changes in contrast to the lastest state of the main branch.')" "git diff upstream/main..HEAD | delta --side-by-side --diff-so-fancy")
+        set GIT_COMPARE_MAIN_INTERACTIVE (printf "%s  %s  %s" "show the diff of current HEAD to upstream/main (per file)" "$(echo '# diff view\nShows the current changes in contrast to the lastest state of the main branch. \nSingle file version.')" "gdmi")
+        set CMDS $GIT_TWO_DIFF $GIT_STAGE_DIFF $GIT_STAGE_DIFF_ALL $GIT_LIST_COMMITS $GIT_COMPARE_MAIN $GIT_COMPARE_MAIN_INTERACTIVE
 
         for cmd in $CMDS
             echo $cmd
